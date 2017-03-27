@@ -1,0 +1,13 @@
+{
+  "name": "pig-latin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "start": "node pig_latin.js",
+    "test": "mocha pig_latin.test.js"
+  }
+}
