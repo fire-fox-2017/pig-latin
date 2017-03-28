@@ -9,54 +9,45 @@ const rl = readline.createInterface({
   prompt: "Enter your input: "
 });
 
-
 function pigLatin(sentence) {
   // Your pig latin implementation here...
-  console.log("PL start: " + sentence);
+  // console.log("PL start: " + sentence);
 
-/*
-Iteration One: CONVERT SINGLE WORD
+  var splitSentence = sentence.split(' ');
+  var finalResult = [];
+  for (let i=0 ; i < splitSentence.length ; i++) {
+    let result = "";
+    // IF the word starts with a vowel, don't change it.
+    if(/^[aiueo]/.test(splitSentence[i])) {
+      result = sentence + "yay";
+    } else { // ELSE replace the word with its pig latin equivalent.
+      //   GET all of the consonants before the first vowel in the word.
+      let n = splitSentence[i].search(/[aiueo]/);
+      // console.log("n=" + n);
+      let first = splitSentence[i].slice(0, n);
+      let second = splitSentence[i].slice(n);
+      // console.log("first = " + first);
+      // console.log("second = " + second);
 
-GET a word from user input.
-// IF the word starts with a vowel, don't change it.
-// ELSE replace the word with its pig latin equivalent.
-//   GET all of the consonants before the first vowel in the word.
-//   SET the consonants at the end of the word and add the suffix "ay."
-// ENDIF
-PRINT the pig-latin-ified word.
-*/
+      //   SET the consonants at the end of the word and add the suffix "ay."
+      result = second + first + "ay";
+      // ENDIF
+    }
 
-  let result = "";
-  // IF the word starts with a vowel, don't change it.
-  if(/^[aiueo]/.test(sentence)) {
-    result = sentence + "yay";
-  } else { // ELSE replace the word with its pig latin equivalent.
-    //   GET all of the consonants before the first vowel in the word.
-    let n = sentence.search(/[aiueo]/);
-    console.log("n=" + n);
-    let first = sentence.slice(0, n);
-    let second = sentence.slice(n);
-    console.log("first = " + first);
-    console.log("second = " + second);
-
-    //   SET the consonants at the end of the word and add the suffix "ay."
-    result = second + first + "ay";
-    // ENDIF
+    // store each word in the sentence in finalResult array
+    finalResult.push(result);
   }
 
-
-  return result;
+  // return the converted Pig Latin words as a string.
+  return finalResult.join(' ');
 }
 
 rl.prompt();
 rl.on('line', (input) => {
   console.log('User input: ' + input);
-  // call pigLatin function
-  console.log("Calling pigLatin function(" + input + ")");
+  console.log("Calling pigLatin(" + input + ")...");
+  console.log("Pig Latin : " + pigLatin(input) + "\n");
 
-  console.log("Pig Latin : " + pigLatin(input));
-  
   // prompt user again for input
   rl.prompt();
-
 });
