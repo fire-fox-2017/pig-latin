@@ -22,6 +22,7 @@ function pigLatin(sentence) {
       result = sentence + "yay";
     } else { // ELSE replace the word with its pig latin equivalent.
       //   GET all of the consonants before the first vowel in the word.
+        // get the index of the vowel
       let n = splitSentence[i].search(/[aiueo]/);
       // console.log("n=" + n);
       let first = splitSentence[i].slice(0, n);
