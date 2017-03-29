@@ -4,6 +4,9 @@
 const readline = require('readline');
 
 function pigLatin(sentence) {
+  if(sentence === ""){
+    return "Please write down a sentence!";
+  }
   var pl="";
   var vow = /[aeiou]/gi;
   if (sentence[0].match(vow)){
@@ -15,16 +18,23 @@ function pigLatin(sentence) {
 return pl;
 }
 
-var rl = readline.createInterface(process.stdin, process.stdout);
-var recursiveAsyncReadLine = function(){
-  rl.question("What would you like to piglatinise?", function(wor){
-    wor=wor.split(" ");
-    var res=[];
-      for(var i=0; i<wor.length; i++){
-        res.push(pigLatin(wor[i]));
-      }
-    console.log(res.join(" "));
-    recursiveAsyncReadLine();
-  });
-};
-recursiveAsyncReadLine();
+var rl = readline.createInterface({
+  input : process.stdin,
+  output : process.stdout,
+  prompt : "What would you like to piglatinise?",
+});
+rl.prompt();
+var res=[];
+var wor;
+rl.on('line', (line) => {
+  wor=line.split(" ");
+  for(var i=0; i<wor.length; i++){
+      res.push(pigLatin(wor[i]));
+    }
+  console.log(res.join(" "));
+  res=[];
+  rl.prompt();
+}).on('close', () => {
+  console.log(" Have a great day!");
+  process.exit(0);
+});
