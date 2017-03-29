@@ -11,9 +11,14 @@ const rl = readline.createInterface({
 rl.prompt();
 
 rl.on('line', (line) => {
-  pigLatin(line.trim());
-  console.log("If you want to end this program, press Ctrl + C !");
-  rl.prompt();
+	if (line == ""){
+		process.exit(0);
+	} else {
+		pigLatin(line.trim());
+	  console.log("If you want to end this program, press Ctrl + C !");
+	  rl.prompt();
+	}
+
 }).on('close', () => {
   console.log("Congratulations! You have learnt Pig Latin Words.");
   process.exit(0);
@@ -25,7 +30,6 @@ function pigLatin(phrase) {
   let pigLatinPhrase = "";
   for (let i = 0; i < words.length; i++) {
 	  let word = words[i].toLowerCase();
-	  console.log("*" + word + "*");
 	  let firstVowelIndex = word.search(/[aeiou]/);
 	  if (firstVowelIndex == -1 || firstVowelIndex == 0) {
 		  pigLatinPhrase += word +" ";
