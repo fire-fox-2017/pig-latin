@@ -20,22 +20,22 @@ pigread();
 
 // converting pig latin word
 function pigLatin(word) {
-  var hurufmati = word.match(/[^aiueo]/g);
-  var hurufhidup = word.match(/[aiueo]/g);{
+  var hurufhidup = /[aiueo]/gi;
+  {
     if (hurufhidup === null) {
       return word + "ay";
     }
   }
-  var pig = hurufhidup.concat(hurufmati);{
     if (word.charAt(0) === "a" || word.charAt(0) === "i" || word.charAt(0) === "u" || word.charAt(0) === "e" || word.charAt(0) === "O"
     || word.charAt(0) === "A" || word.charAt(0) === "I" || word.charAt(0) === "U" || word.charAt(0) === "E" || word.charAt(0) === "O"){
       return word;
-
-    }
   }
+    else {
+      var hurufmati= word.indexOf(word.match(hurufhidup)[0]);
+      var pig =  word.substr(hurufmati) + word.substr(0,hurufmati) + "ay";
+    }
 
-
-    return pig.join("") + "ay";
+    return pig;
 }
 
 // converting pig latin sentence
