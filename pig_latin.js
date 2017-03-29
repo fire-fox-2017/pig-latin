@@ -2,7 +2,48 @@
 
 //use readline to fix this challenge
 const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  prompt: 'Convert your words into Pig Latin Here ==>'
+});
 
-function pigLatin(sentence) {
-  // Your pig latin implementation here...
+function pigread() {
+  rl.prompt();
+  rl.on('line', (tulisan) => {
+    console.log(pigLatin2(tulisan));
+    rl.close()
+  });
+
+}
+pigread();
+
+// converting pig latin word
+function pigLatin(word) {
+  var hurufmati = word.match(/[^aiueo]/g);
+  var hurufhidup = word.match(/[aiueo]/g);{
+    if (hurufhidup === null) {
+      return word + "ay";
+    }
+  }
+  var pig = hurufhidup.concat(hurufmati);{
+    if (word.charAt(0) === "a" || word.charAt(0) === "i" || word.charAt(0) === "u" || word.charAt(0) === "e" || word.charAt(0) === "O"
+    || word.charAt(0) === "A" || word.charAt(0) === "I" || word.charAt(0) === "U" || word.charAt(0) === "E" || word.charAt(0) === "O"){
+      return word;
+
+    }
+  }
+
+
+    return pig.join("") + "ay";
+}
+
+// converting pig latin sentence
+function pigLatin2(sentence) {
+  var result = [];
+  var split = sentence.split(' ');
+  for(var i = 0; i < split.length; i++) {
+      result.push(pigLatin(split[i]));
+    }
+  return result.join(' ');
 }
