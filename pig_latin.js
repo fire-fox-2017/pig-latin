@@ -32,10 +32,13 @@ function pigLatin(sentence) {
         if(i===0){
           newKata=oldKata.slice(i,oldKata.length)+oldKata.slice(0,i)+"way";
           status=true;
-        }else{
+        }else if(i>0){
           newKata=oldKata.slice(i,oldKata.length)+oldKata.slice(0,i)+"ay";
           status=true;
-        }
+        }else{
+					newKata=oldKata.split("").reverse().join("")+"ay";
+					status=true;
+				}
       }
     }
   }
