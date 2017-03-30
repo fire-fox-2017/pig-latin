@@ -20,11 +20,11 @@ rl.on('line', (line) => {
 });
 
 function convertKata(kata) {
-    let temp_sentence = kata.split(' ');
+    let temp_kata = kata.split(' ');
     let str = '';
 
-    for (var i = 0; i < temp_sentence.length; i++) {
-        str = str + pigLatin(temp_sentence[i]) + ' ';
+    for (var i = 0; i < temp_kata.length; i++) {
+        str = str + pigLatin(temp_kata[i]) + ' ';
     }
 
     console.log(str);
@@ -32,24 +32,21 @@ function convertKata(kata) {
 
 function pigLatin(sentence) {
     // Your pig latin implementation here...
-    let pola_vokal = /[aiueo]/i;
-    let pola_konsonan = /[^aiueo]/i;
     let newStr = "";
     let konsonan = "";
+    let pola_vokal = /[aiueo]/i;
+    let pola_konsonan = /[^aiueo]/i;
 
-    let temp_sentence = sentence.split('');
-
-    for(var i = 0; i < temp_sentence.length; i++){
-      if(temp_sentence[0].match(pola_vokal)){
-        newStr = sentence;
-        break;
-      }
-
-      if(temp_sentence[i].match(pola_konsonan)){
-        konsonan += temp_sentence[i];
-      } else {
-        newStr = sentence.slice(i) + konsonan + 'ay';
-        break;
+    if(pola_vokal.test(sentence[0])){ //cek awal huruf apakah vokal
+      newStr = sentence;
+    } else {
+      for(var i = 0; i < sentence.length; i++){
+        if(sentence[i].match(pola_konsonan)){
+          konsonan += sentence[i]; //tambah konsonan
+        } else {
+          newStr = sentence.slice(i) + konsonan + 'ay'; 
+          break;
+        }
       }
     }
 
