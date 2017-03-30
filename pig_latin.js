@@ -31,7 +31,7 @@ function pigLatin(sentence) {
   var tempSlice = sentence.slice(tempIndex);
 
   if (/[aiueo]/i.test(sentence[0])) {
-    resultPig = sentence+'yay';
+    resultPig = sentence;
   } else {
     for (var i = 0; i < sentence.length; i++) {
       if (/[^aiueo]/gi.test(sentence[i])) {
