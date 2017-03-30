@@ -35,9 +35,6 @@ function pigLatin(sentence) {
     let pola_vokal = /[aiueo]/gi;
     let pola_konsonan = /[^aiueo]/gi;
     let newStr = "";
-    let konsonan = '';
-    let vokal = '';
-    let kalimat = '';
 
     let temp_sentence = sentence.split('');
 
