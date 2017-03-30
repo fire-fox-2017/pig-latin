@@ -32,9 +32,10 @@ function convertKata(kata) {
 
 function pigLatin(sentence) {
     // Your pig latin implementation here...
-    let pola_vokal = /[aiueo]/gi;
-    let pola_konsonan = /[^aiueo]/gi;
+    let pola_vokal = /[aiueo]/i;
+    let pola_konsonan = /[^aiueo]/i;
     let newStr = "";
+    let konsonan = "";
 
     let temp_sentence = sentence.split('');
 
