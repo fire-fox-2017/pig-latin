@@ -29,16 +29,10 @@ function pigLatin(sentence) {
     for(var j=0;j<arrVowel.length;j++){
       var temp=oldKata.charAt(i);
       if(temp===arrVowel[j]&&status===false){
-        if(i===0){
-          newKata=oldKata.slice(i,oldKata.length)+oldKata.slice(0,i)+"way";
-          status=true;
-        }else if(i>0){
+        if(i>0){
           newKata=oldKata.slice(i,oldKata.length)+oldKata.slice(0,i)+"ay";
           status=true;
-        }else{
-					newKata=oldKata.split("").reverse().join("")+"ay";
-					status=true;
-				}
+        }
       }
     }
   }
