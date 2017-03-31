@@ -32,7 +32,10 @@ function pigLatin(sentence) {
         if(i>0){
           newKata=oldKata.slice(i,oldKata.length)+oldKata.slice(0,i)+"ay";
           status=true;
-        }
+        }else{
+					newKata=oldKata;
+          status=true;
+				}
       }
     }
   }
