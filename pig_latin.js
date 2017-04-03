@@ -11,23 +11,41 @@ prompt : "HAI please input your word to process pigLatin>"
 rl.prompt();
 rl.on('line', (answer) => {
 pigLatin(answer);
+rl.prompt();
+  }).on('close', () => {
+    console.log('You did great Thank you!!');
+    process.exit(0);
   });
 
 
 function pigLatin(sentence) {
-  var pigLatin = '';
-    var regex = /[aeiou]/gi;
-    if (sentence[0].match(regex)) {
-      pigLatin = sentence;
-    } else {
-      var vowelIndice = sentence.indexOf(sentence.match(regex)[0]);
-      pigLatin = sentence.substr(vowelIndice) + sentence.substr(0, vowelIndice) + 'ay.';
-    }
-    // return pigLatin;
-    console.log(pigLatin);
-  }
+  let pigText = sentence.split(" ");
+  let indexVocal = null;
+  let firstText = '';
+  let secondText = '';
+  let fixText = [];
+  let x = '';
+  for (let i = 0; i <pigText.length ; i++){
 
-  function splitSentence(sentence){
-    var Newsentence = pigLatin.split(' ').length;
-      console.log(splitSentence(Newsentence));
+    for (let j = 0; j < pigText[i].length ; j ++){
+      if(pigText[i][j] == 'a' || pigText[i][j] == 'i' || pigText[i][j] == 'u' || pigText[i][j] == 'e' || pigText[i][j] == 'o'){
+         indexVocal = j;
+         firstText = pigText[i].slice(0, indexVocal);
+         secondText = pigText[i].slice(indexVocal, pigText[i].length);
+         break;
+      }
+    }
+    if(firstText == ''){
+      fixText.push(pigText[i])
+    }
+    else if(secondText == ''){
+      fixText.push('ERROR');
+    }
+    else{
+      x = secondText + firstText + 'ay.'
+      fixText.push(x);
+    }
+  }
+  var finalText = fixText.join(" ");
+  console.log(finalText);
   }
