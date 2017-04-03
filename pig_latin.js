@@ -28,16 +28,16 @@ function pigLatin(sentence) {
             {
               let kata=kalimatSplit[i].split("");
               let hasil=[];
-              for(let j=0; j<kataSplit.length;j++){
-                if(kata[j]!=="a"&&kata[j]!=="i"&&kata[j]!=="u"&&kata[j]!=="e"&&kata[j]!=="0"){
+              for(let j=0; j<kata.length;j++){
+                if((/[^aiueo]+/g).test(kata[j])){
                     hasil.push(kata[j]);
                 }else
                   {
                     hasil.unshift(kata.splice(j,kata.length).join(""));
                     j=kataSplit.length;
-                    hasilKata.push(hasil.join("")+"ay");
                   }
                }
+               hasilKata.push(hasil.join("")+"ay");
             }
         }
       return hasilKata.join(" ");
@@ -52,7 +52,7 @@ function pigLatin(sentence) {
     }else{
         for(let i=0; i<kataSplit.length;i++)
         {
-          if(kataSplit[i]!=="a"&&kataSplit[i]!=="i"&&kataSplit[i]!=="u"&&kataSplit[i]!=="e"&&kataSplit[i]!=="0"){
+          if((/[^aiueo]+/g).test(kataSplit[i])){
               hasilKata.push(kataSplit[i]);
           }else
           {
